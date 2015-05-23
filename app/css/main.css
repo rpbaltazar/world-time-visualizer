@@ -1,0 +1,8 @@
+body {
+  color: rgba(255, 255, 255, 0.901961);
+}
+
+#timezone_selector_chosen {
+  width: 30%;
+  color: #424242;
+}

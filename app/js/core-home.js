@@ -1,9 +1,16 @@
 (function(){
+
+  this.App = {};
+
+  $.getJSON("res/latest.json", function(json) {
+    moment.tz.add(json.zones);
+    App.ClockShop = new WorldClockShop();
+    ko.applyBindings(App.ClockShop);
+    timedUpdate();
+  });
+
   function updateClock(){
-    var now = moment(),
-        second = now.seconds() * 6,
-        minute = now.minutes() * 6 + second / 60,
-        hour = ((now.hours() % 12) / 12) * 360 + 90 + minute / 12;
+    App.ClockShop.updateClocks();
   }
 
   function timedUpdate () {
@@ -11,5 +18,4 @@
     setTimeout(timedUpdate, 1000);
   }
 
-  timedUpdate();
 })();
