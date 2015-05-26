@@ -26,8 +26,11 @@
     .row
       .col.s12
         .divider
-        %ul.selected-timezones{"data-bind" => "foreach: worldClocks"}
-          %li{"data-bind" => "text: displayContents()"}
+        .selected-timezones{"data-bind" => "foreach: worldClocks"}
+          .timezone-container.col.s4
+            .timezone-name{"data-bind" => "text: displayContents()"}
+            %canvas.timezone-clock{"data-bind" => "attr: {id: id()}"}
+
     %script{:src => "http://code.jquery.com/jquery-2.1.4.min.js"}
     %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"}
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css", :rel => "stylesheet"}/

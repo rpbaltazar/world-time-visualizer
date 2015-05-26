@@ -20,8 +20,29 @@ module.exports = (grunt) ->
         src: ['res/*', 'css/*']
         dest: 'build'
 
+    watch:
+      coffee:
+        files: ["src/js/**/*.coffee"]
+        tasks: ["compile:coffee"]
+      haml:
+        files: ["src/index.haml"]
+        tasks: ["compile:haml"]
+      static:
+        files: ['src/res/*', 'src/css/*']
+        tasks: ["compile:copy"]
+
+    connect:
+      server:
+        options:
+          port: 8000
+          base: 'build'
+
   #Load Tasks
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-haml2html'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-connect'
+
   grunt.registerTask 'compile', ['coffee', 'haml', 'copy']
+  grunt.registerTask 'server', ['connect:server', 'watch']
