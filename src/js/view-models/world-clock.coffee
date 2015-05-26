@@ -10,11 +10,7 @@ class App.ViewModels.WorldClockShop
 
   addClock: ->
     timezoneName = @selectedTimezone()
-    @worldClocks.push new Clock(timezoneName)
-
-  updateClocks: ->
-    _.each @worldClocks(), (clock) ->
-      clock.updateTime()
+    @worldClocks.push timezoneName
 
   _loadTimezones: ->
     @timezoneList _.map(moment.tz.names(), (tzName, index) ->
@@ -23,16 +19,3 @@ class App.ViewModels.WorldClockShop
         optionValue: tzName
       }
     )
-
-class Clock
-  constructor: (timezone) ->
-    @timezone = ko.observable(timezone)
-    @currentTime = ko.observable()
-    @updateTime()
-
-
-  updateTime: ->
-    @currentTime moment.tz(@timezone()).toString()
-
-  displayContents: ->
-    @timezone() + ': ' + @currentTime()
