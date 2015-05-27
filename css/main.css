@@ -1,0 +1,20 @@
+/*
+ * grey.darken-3 => #424242
+ * red.darken-3 => #c62828
+ */
+body {
+  color: rgba(255, 255, 255, 0.901961);
+}
+
+#timezone_selector_chosen {
+  width: 30%;
+  color: #424242;
+}
+
+circle.circle-class {
+  fill: #424242
+}
+
+circle.circle-class.red {
+  stroke: #c62828
+}
