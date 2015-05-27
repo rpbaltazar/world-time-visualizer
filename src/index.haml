@@ -27,9 +27,7 @@
       .col.s12
         .divider
         .selected-timezones{"data-bind" => "foreach: worldClocks"}
-          .timezone-container.col.s4
-            .timezone-name{"data-bind" => "text: displayContents()"}
-            %canvas.timezone-clock{"data-bind" => "attr: {id: id()}"}
+          .timezone-container{"data-bind" => "component: {name: 'location-clock', params: {timezone: $data} }"}
 
     %script{:src => "http://code.jquery.com/jquery-2.1.4.min.js"}
     %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"}
@@ -41,5 +39,6 @@
     %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.0/lodash.min.js"}
     %script{:src => "js/main.js"}
     %script{:src => "js/ko-bindings/ko-binding-materialize-select.js"}
+    %script{:src => "js/ko-components/view-models/location-clock.js"}
     %script{:src => "js/view-models/world-clock.js"}
     %script{:src => "js/core-home.js"}

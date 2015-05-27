@@ -3,10 +3,14 @@
     moment.tz.add json.zones
     App.ClockShop = new App.ViewModels.WorldClockShop()
     ko.applyBindings App.ClockShop
-    App.timedUpdate()
-
-@App.timedUpdate = =>
-  App.ClockShop.updateClocks()
-  setTimeout @App.timedUpdate, 1000
 
 @App.initialize()
+
+ko.components.register 'location-clock',
+  viewModel: App.ViewModels.LocationClock
+  template: """
+    <div class="col s4">
+      <div class="timezone-name" data-bind="text: displayContents()"></div>
+      <canvas class="timezone-clock" data-bind="attr: {id: id() }"></canvas>
+    </div>
+  """
