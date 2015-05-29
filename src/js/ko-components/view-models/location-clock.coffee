@@ -42,23 +42,36 @@ class App.ViewModels.LocationClock
     hourShift = mCurrentTime.hour()
 
     canvas = document.getElementById(@id())
-    console.log canvas
     if canvas
       context = canvas.getContext('2d')
+      context.clearRect(0, 0, canvas.width, canvas.height);
       x = canvas.width / 2
       y = canvas.height / 2
       radius = 40
+      outerRadius = radius + 14
       for i in [0..23]
-        startAngle = (hourShift + i-0.5) * 2 * Math.PI / 24
-        endAngle = (hourShift + i + 0.5) * 2 * Math.PI / 24
+        startAngle = (i-0.5) * 2 *Math.PI / 24 - (Math.PI/2)
+        endAngle = (i+0.5) * 2 *Math.PI / 24 - (Math.PI/2)
+        angle = 2*Math.PI - ((endAngle - startAngle)/2 + startAngle) + Math.PI/2
         counterClockwise = false
         context.beginPath()
         context.arc x, y, radius, startAngle, endAngle, counterClockwise
         context.lineWidth = 15
         context.closePath()
         # line color
-        context.strokeStyle = @colorArray[i]
+        if hourShift + i > 24
+          currentHour = hourShift + i - 24
+        else
+          currentHour = hourShift + i
+
+        context.strokeStyle = @colorArray[currentHour]
         context.stroke()
+        context.font = '12 serif'
+        hourText = context.measureText(currentHour)
+        px = Math.sin(angle) * outerRadius + x - hourText.width/2
+        py = Math.cos(angle) * outerRadius + y + 3
+        context.fillStyle = @colorArray[currentHour]
+        context.fillText currentHour, px, py
 
   displayContents: ->
     @timezone() + ': ' + @currentTime()
