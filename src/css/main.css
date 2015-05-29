@@ -12,9 +12,9 @@ body {
 }
 
 circle.circle-class {
-  fill: #424242
+  fill: #424242;
 }
 
 circle.circle-class.red {
-  stroke: #c62828
+  stroke: #c62828;
 }
