@@ -44,7 +44,7 @@ class App.ViewModels.LocationClock
     canvas = document.getElementById(@id())
     if canvas
       context = canvas.getContext('2d')
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.clearRect(0, 0, canvas.width, canvas.height)
       x = canvas.width / 2
       y = canvas.height / 2
       radius = 40
