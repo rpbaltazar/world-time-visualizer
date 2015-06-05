@@ -17,7 +17,7 @@ module.exports = (grunt) ->
       main:
         expand: true
         cwd: 'src'
-        src: ['res/*', 'css/*']
+        src: ['res/*', 'css/*', 'images/*']
         dest: 'build'
 
     watch:

@@ -7,6 +7,7 @@
     %title World Time Clock
     %meta{:name => "description"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "images/favicon.png", :rel => "shortcut icon"}/
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css", :rel => "stylesheet"}/
     %link{:href => "css/main.css", :rel => "stylesheet"}/
   %body.grey.darken-3
@@ -25,9 +26,8 @@
             %button.btn.waves-effect.waves-light{"data-bind" => "click: addClock"} Add a clock
     .row
       .col.s12
-        .divider
         .selected-timezones{"data-bind" => "foreach: worldClocks"}
-          .timezone-container{"data-bind" => "component: {name: 'location-clock', params: {timezone: $data} }"}
+          %location-clock{params: "timezone: $data"}
 
     %script{:src => "http://code.jquery.com/jquery-2.1.4.min.js"}
     %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"}
